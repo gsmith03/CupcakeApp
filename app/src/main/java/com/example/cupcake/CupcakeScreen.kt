@@ -50,6 +50,7 @@ import com.example.cupcake.data.DataSource.flavors
 import com.example.cupcake.ui.SelectOptionScreen
 import com.example.cupcake.ui.OrderSummaryScreen
 
+
 enum class CupcakeScreen(@StringRes val title: Int) {
     Start(title = R.string.app_name),
     Flavor(title = R.string.choose_flavor),
@@ -63,7 +64,7 @@ enum class CupcakeScreen(@StringRes val title: Int) {
 fun CupcakeAppBar(
     currentScreen: CupcakeScreen,
     canNavigateBack: Boolean,
-    navigateUp: () -> Unit,
+    navigateUp: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     TopAppBar(
@@ -118,7 +119,9 @@ fun CupcakeApp(
                     onNextButtonClicked = {
                        viewModel.setQuantity(it)
                        navController.navigate(CupcakeScreen.Flavor.name)
-                   }, modifier = Modifier
+                   },
+
+                    modifier = Modifier
                         .fillMaxSize()
                         .padding(dimensionResource(R.dimen.padding_medium))
                     )
